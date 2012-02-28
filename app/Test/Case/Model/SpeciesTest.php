@@ -20,4 +20,39 @@ class SpeciesTestCase extends CakeTestCase {
 	public function testTrueIsIndeedTrue() {
 		$this->assertEquals(true, true);
 	}
+
+	public function testSpeciesIsIndeedSpecies() {
+		$this->assertInstanceOf('Species', $this->Species);
+	}
+
+	public function testShouldNotBeAbleToCreateSpeciesWithoutName() {
+		$this->assertFalse(
+			$this->Species->save(
+				array(
+					'Species' => array('name' => '')
+				)
+			)
+		);
+		$this->assertEmpty($this->Species->id);
+	}
+
+	public function testShouldBeAbleToCreateSpeciesWithName() {
+		$this->Species->save(
+			array(
+				'Species' => array('name' => 'MySpeciesName')
+			)
+		);
+		$this->assertNotEmpty($this->Species->id);
+	}
+
+	public function testShouldNotBeAbleToCreateSpeciesWithBadName() {
+		$this->assertFalse(
+			$this->Species->save(
+				array(
+					'Species' => array('name' => 'sdsd 12')
+				)
+			)
+		);
+		$this->assertEmpty($this->Species->id);
+	}
 }
