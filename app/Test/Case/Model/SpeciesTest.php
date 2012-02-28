@@ -25,7 +25,7 @@ class SpeciesTestCase extends CakeTestCase {
 		$this->assertInstanceOf('Species', $this->Species);
 	}
 
-	public function testShouldNotBeAbleToCreateSpeciesWithoutName() {
+	public function testShouldNotBeAbleToCreateSpeciesWithBlankName() {
 		$this->assertFalse(
 			$this->Species->save(
 				array(
@@ -37,22 +37,36 @@ class SpeciesTestCase extends CakeTestCase {
 	}
 
 	public function testShouldBeAbleToCreateSpeciesWithName() {
-		$this->Species->save(
-			array(
-				'Species' => array('name' => 'MySpeciesName')
+		$this->assertNotEmpty(
+			$this->Species->save(
+				array(
+					'Species' => array('name' => 'Emu')
+				)
 			)
 		);
 		$this->assertNotEmpty($this->Species->id);
 	}
 
-	public function testShouldNotBeAbleToCreateSpeciesWithBadName() {
+	public function testShouldBeAbleToCreateSpeciesWithWhiteSpace() {
+		$this->assertNotEmpty(
+			$this->Species->save(
+				array(
+					'Species' => array('name' => 'Evil Canary')
+				)
+			)
+		);
+		$this->assertNotEmpty($this->Species->id);
+	}
+
+	public function testShouldNotBeAbleToCreateSpeciesWithoutName() {
 		$this->assertFalse(
 			$this->Species->save(
 				array(
-					'Species' => array('name' => 'sdsd 12')
+					'Species' => array()
 				)
 			)
 		);
 		$this->assertEmpty($this->Species->id);
 	}
+	
 }
