@@ -7,24 +7,35 @@ class Occurrence extends AppModel {
 	public $name = 'Occurrence';
 
 	// Specify validation for Occurrence
+	// See API: http://book.cakephp.org/2.0/en/models/data-validation.html
 	public $validate = array(
-		// The range validation rule seems a bit stupid.
-		// It is non inclusive, but it is non-inclusive to the whole number.
-		// Note sure what I mean, read on...
-		// So the range -91 to 91 is actually -90 to 90 inclusive.
-		// The following range (-91, 91) will accept anything between -90 and 90 (including -89.9999 and 89.999).
-		// It won't accept -90.001 or 90.01.
+
+		// NOTE:
+		// From the Cake PHP Book:
+		// When using multiple rules per field the ‘required’ and ‘allowEmpty’ keys need to be used only once in the first rule.
 		'latitude' => array(
-			'rule' => array('range', -91, 91)
-			'required' => true,
-			'allowEmpty' => false,
-			'message' => 'This field must be a number between -90 to 90 (inclusive)'
+			'less or equal 90' => array(
+				'rule' => array('comparison', 'less or equal', 90),
+				'message' => 'This field must be a number between -90 to 90 (inclusive)',
+				'required' => true,
+				'allowEmpty' => false,
+			),
+			'greater or equal -90' => array(
+				'rule' => array('comparison', 'greater or equal', -90),
+				'message' => 'This field must be a number between -90 to 90 (inclusive)',
+			),
 		),
 		'longitude' => array(
-			'rule' => array('range', -181, 181)
-			'required' => true,
-			'allowEmpty' => false,
-			'message' => 'This field must be a number between -180 to 180 (inclusive)'
+			'less or equal 180' => array(
+				'rule' => array('comparison', 'less or equal', 180),
+				'required' => true,
+				'allowEmpty' => false,
+				'message' => 'This field must be a number between -180 to 180 (inclusive)',
+			),
+			'greater or equal -180' => array(
+				'rule' => array('comparison', 'greater or equal', -180),
+				'message' => 'This field must be a number between -180 to 180 (inclusive)',
+			),
 		)
 	);
 

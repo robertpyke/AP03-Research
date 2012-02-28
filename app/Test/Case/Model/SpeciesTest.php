@@ -34,11 +34,35 @@ class SpeciesTestCase extends CakeTestCase {
 		$this->assertEmpty($this->Species->id);
 	}
 
+	public function testShouldNotBeAbleToCreateDuplicates() {
+		// We should be able to create the first fine.
+		$this->assertNotEmpty(
+			$this->Species->save(
+				array(
+					'Species' => array('name' => 'DuplicateName')
+				)
+			)
+		);
+		$this->assertNotEmpty($this->Species->id);
+
+		// Call create, so we move onto a new species instance.
+		// We don't want to be updating the existing species instace when we run save.
+		$this->Species->create();
+		// When we try and create a second, it should fail.
+		$this->assertFalse(
+			$this->Species->save(
+				array(
+					'Species' => array('name' => 'DuplicateName')
+				)
+			)
+		);
+	}
+
 	public function testShouldBeAbleToCreateSpeciesWithName() {
 		$this->assertNotEmpty(
 			$this->Species->save(
 				array(
-					'Species' => array('name' => 'Emu')
+					'Species' => array('name' => 'Cat')
 				)
 			)
 		);

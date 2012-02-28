@@ -10,13 +10,24 @@ class Species extends AppModel {
 	public $hasMany = 'Occurrence';
 
 	// Specify validation for Species
+	// See API: http://book.cakephp.org/2.0/en/models/data-validation.html
 	public $validate = array(
+		// NOTE:
+		// From the Cake PHP Book:
+		// When using multiple rules per field the ‘required’ and ‘allowEmpty’ keys need to be used only once in the first rule.
 		'name' => array(
-			'rule' => 'notEmpty',    // Can't be empty
-			'rule' => 'isUnique',    // Can't be duplicate (shouldn't have two species with same name)
-			'required' => true,
-			'allowEmpty' => false,
-			'message' => 'This field cannot be left blank'
+			// Can't be empty string
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'This field must be specified',
+				'required' => true,
+				'allowEmpty' => false,
+			),
+			// Can't be duplicate (shouldn't have two species with same name)
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'This field cannot be left blank',
+			)
 		)
 	);
 }
