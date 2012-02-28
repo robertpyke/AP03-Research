@@ -62,7 +62,8 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'mysql-shared-02.phpfog.com',
+//		'host' => 'mysql-shared-02.phpfog.com',
+		'host' => 'localhost',
 		'login' => 'CakePHP-29576',
 		'password' => 'testTest2',
 		'database' => 'ap_03_phpfogapp_com',
