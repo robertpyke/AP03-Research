@@ -1,8 +1,10 @@
 <?php
 // Fixture for testing Species
 class SpeciesFixture extends CakeTestFixture {
-	// Import model information.
-	public $import = 'Species';
+	// Import model information from 'default' database.
+	public $import = array(
+		'model' => 'Species'
+	);
 
 	// Setup some dummy records
 	public $records = array(
