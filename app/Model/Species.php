@@ -1,4 +1,4 @@
-<?
+<?php
 class Species extends AppModel {
 	public $name = 'Species';
 	// A Species has many occurences.
