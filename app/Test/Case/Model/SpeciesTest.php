@@ -13,14 +13,12 @@ class SpeciesTestCase extends CakeTestCase {
 		$this->Species = ClassRegistry::init('Species');
 	}
 
-	/**
-	  * Dummy test to make sure test framework is working as expected
-		* TODO: Remove this once cake PHP framework is confirmed working as expected
-		*/
+	// Make sure that everything appears a-okay with the world
 	public function testTrueIsIndeedTrue() {
 		$this->assertEquals(true, true);
 	}
 
+	// This confirms that our setup did what we expect. This should never fail.
 	public function testSpeciesIsIndeedSpecies() {
 		$this->assertInstanceOf('Species', $this->Species);
 	}
