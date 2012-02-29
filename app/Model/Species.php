@@ -26,7 +26,7 @@ class Species extends AppModel {
 			// Can't be duplicate (shouldn't have two species with same name)
 			'isUnique' => array(
 				'rule' => 'isUnique',
-				'message' => 'This field cannot be left blank',
+				'message' => 'This field must be unique',
 			)
 		)
 	);

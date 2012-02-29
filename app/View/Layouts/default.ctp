@@ -9,6 +9,7 @@
 			< ?php echo $javascript->link('jtip', false); ?> 
 		-->
 		<?php
+			echo $this->Html->css('cake.generic');
 			echo $scripts_for_layout;
 		?>
 	</head>
